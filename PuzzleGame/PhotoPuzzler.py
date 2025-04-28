@@ -26,7 +26,6 @@ class MessageBox:
         self.visible = True
         self.button_hover = False
 
-        # Colors matching the game's style
         self.colors = {
             'background': (245, 245, 245),
             'border': (0, 0, 0),
@@ -42,7 +41,7 @@ class MessageBox:
         current_line = ""
         for word in words:
             test_line = current_line + " " + word if current_line else word
-            if self.font.size(test_line)[0] < width - 40:  # 40 pixels padding
+            if self.font.size(test_line)[0] < width - 40:
                 current_line = test_line
             else:
                 lines.append(current_line)
@@ -60,7 +59,6 @@ class MessageBox:
         s.fill((0, 0, 0, 128))
         self.screen.blit(s, (0, 0))
 
-        # Draw message box with shadow
         shadow_rect = pygame.Rect(self.x + 3, self.y + 3, self.width, self.height)
         pygame.draw.rect(self.screen, (0, 0, 0, 100), shadow_rect, border_radius=10)
         
@@ -75,43 +73,32 @@ class MessageBox:
                                                     self.y + self.height//2 - 20 + i * 30))
             self.screen.blit(text_surface, text_rect)
 
-        # Draw OK button with realistic style
-        # Create button surface for gradient effect
         button_surface = pygame.Surface((self.button_rect.width, self.button_rect.height), pygame.SRCALPHA)
 
-        # Draw button shadow
         shadow_rect = pygame.Rect(2, 2, self.button_rect.width, self.button_rect.height)
         pygame.draw.rect(button_surface, (0, 0, 0, 100), shadow_rect, border_radius=5)
 
-        # Draw button background with gradient
         color = self.colors['button_hover'] if self.button_hover else self.colors['button']
-        # Create gradient effect
         for y in range(self.button_rect.height):
-            alpha = int(255 * (1 - y / self.button_rect.height * 0.3))  # Fade to darker
+            alpha = int(255 * (1 - y / self.button_rect.height * 0.3))
             gradient_color = (*color[:3], alpha)
             pygame.draw.line(button_surface, gradient_color, (0, y), (self.button_rect.width, y))
 
-        # Draw button border
         pygame.draw.rect(button_surface, (*color[:3], 200),
                          pygame.Rect(0, 0, self.button_rect.width, self.button_rect.height),
                          border_radius=5)
 
-        # Draw button highlight
         highlight_rect = pygame.Rect(0, 0, self.button_rect.width, self.button_rect.height // 3)
         highlight_color = (*color[:3], 100)
         pygame.draw.rect(button_surface, highlight_color, highlight_rect, border_radius=5)
 
-        # Blit button surface to screen
         self.screen.blit(button_surface, self.button_rect)
 
-        # Draw button text with shadow
         text = "OK"
-        # Draw text shadow
         shadow_surface = self.button_font.render(text, True, (0, 0, 0, 150))
         shadow_rect = shadow_surface.get_rect(center=(self.button_rect.centerx + 1, self.button_rect.centery + 1))
         self.screen.blit(shadow_surface, shadow_rect)
 
-        # Draw main text
         text_surface = self.button_font.render(text, True, self.colors['button_text'])
         text_rect = text_surface.get_rect(center=self.button_rect.center)
         self.screen.blit(text_surface, text_rect)
@@ -120,7 +107,6 @@ class MessageBox:
         if not self.visible:
             return False
         
-        # Update button hover state
         self.button_hover = self.button_rect.collidepoint(pos)
         
         if self.button_rect.collidepoint(pos):
@@ -131,8 +117,8 @@ class MessageBox:
 class PhotoPuzzle:
     def __init__(self, grid_size=3):
         pygame.init()
-        self.grid_size = grid_size
-        self.piece_size = 150
+        self.grid_size = grid_size #Default grid size is 3x3
+        self.piece_size = 150 
         self.puzzle_width = self.grid_size * self.piece_size
         self.button_width = 250
         self.padding = 20
@@ -154,10 +140,9 @@ class PhotoPuzzle:
         ]
         self.current_image_index = 0
 
-        # Calculate vertical center position for puzzle
         self.puzzle_top_padding = (self.window_height - self.puzzle_width) // 2
 
-        # Colors - Modern color scheme
+
         self.colors = {
             'background': (245, 245, 245),
             'button': (45, 45, 45),
@@ -183,7 +168,7 @@ class PhotoPuzzle:
 
         # Initialize game state
         self.current_state = np.arange(self.grid_size * self.grid_size).reshape(self.grid_size, self.grid_size)
-        self.empty_pos = (grid_size - 1, grid_size - 1)
+        self.empty_pos = (grid_size - 1, grid_size - 1) #Bottom right corner
         self.moves = 0
         self.solving = False
         self.solution_path = []
@@ -192,25 +177,24 @@ class PhotoPuzzle:
         self.start_time = None
         self.elapsed_time = 0
         self.algorithm_time = 0
-        self.timer_font = pygame.font.Font(None, 36)  # Larger font for timer
-        self.title_font = pygame.font.Font(None, 42)  # Larger font for title
-        self.stats_font = pygame.font.Font(None, 32)  # Font for moves
 
-        # Try to load custom font, fallback to default if not available
+        self.timer_font = pygame.font.Font(None, 36) 
+        self.title_font = pygame.font.Font(None, 42)  
+        self.stats_font = pygame.font.Font(None, 32)  
+
         try:
             self.title_font = pygame.font.Font("C:\\Windows\\Fonts\\arial.ttf", 42)
         except:
             self.title_font = pygame.font.Font(None, 42)
 
-        # Load and prepare the image
         self.load_image()
 
         # Initialize buttons
         self.buttons = []
-        button_height = 40  # Slightly smaller buttons
-        button_spacing = 8  # Tighter spacing
-        button_x = self.puzzle_width + self.padding + self.side_padding  # Adjusted x position
-        button_y = self.padding + 150  # Start buttons higher
+        button_height = 40  
+        button_spacing = 8  
+        button_x = self.puzzle_width + self.padding + self.side_padding  
+        button_y = self.padding + 150 
 
         # Title and stats area
         self.stats_rect = pygame.Rect(button_x, self.padding, self.button_width - self.padding, 120)
@@ -276,7 +260,7 @@ class PhotoPuzzle:
         })
 
         # Font for buttons
-        self.font = pygame.font.Font(None, 24)  # Smaller button font
+        self.font = pygame.font.Font(None, 24) 
 
     def load_image(self):
         """Load the current image and prepare it for the puzzle"""
@@ -290,19 +274,15 @@ class PhotoPuzzle:
             self._shuffle_puzzle()
         except Exception as e:
             print(f"Error loading image: {e}")
-            # If there's an error, try the next image
             self.current_image_index = (self.current_image_index + 1) % len(self.available_images)
             self.load_image()
 
     def change_image(self):
-        """Change to the next available image"""
         self.current_image_index = (self.current_image_index + 1) % len(self.available_images)
         self.load_image()
-        # Shuffle the puzzle after changing image
         self._shuffle_puzzle()
 
     def _split_image(self):
-        """Split the image into grid_size x grid_size pieces"""
         pieces = []
         for i in range(self.grid_size):
             for j in range(self.grid_size):
@@ -315,15 +295,12 @@ class PhotoPuzzle:
         return pieces
 
     def _create_initial_state(self):
-        """Create the initial state of the puzzle"""
         state = np.arange(self.grid_size * self.grid_size).reshape(self.grid_size, self.grid_size)
-        # Shuffle the puzzle
         for _ in range(1000):
             self._make_random_move()
         return state
 
     def _make_random_move(self):
-        """Make a random valid move"""
         i, j = self.empty_pos
         possible_moves = []
         if i > 0:
@@ -341,24 +318,19 @@ class PhotoPuzzle:
             self.empty_pos = (new_i, new_j)
 
     def _swap_pieces(self, pos1, pos2):
-        """Swap two pieces in the current state"""
         i1, j1 = pos1
         i2, j2 = pos2
         self.current_state[i1][j1], self.current_state[i2][j2] = self.current_state[i2][j2], self.current_state[i1][j1]
 
     def _create_blurred_piece(self):
-        """Create a very blurred version of the last piece"""
         last_piece = self.pieces[-1]
-        # Apply multiple blur passes for stronger effect
         blurred = last_piece.filter(ImageFilter.GaussianBlur(radius=15))
         blurred = blurred.filter(ImageFilter.GaussianBlur(radius=15))
         return blurred
 
     def draw(self):
-        """Draw the current state of the puzzle"""
         self.screen.fill(self.colors['background'])
 
-        # Draw puzzle with thicker border
         puzzle_rect = pygame.Rect(self.padding, self.puzzle_top_padding, self.puzzle_width, self.puzzle_width)
         pygame.draw.rect(self.screen, (100, 100, 100), puzzle_rect, 3)  # Thicker outer border
 
@@ -442,21 +414,19 @@ class PhotoPuzzle:
             current_time = pygame.time.get_ticks()
             self.elapsed_time = current_time - self.start_time
 
-        # Draw timer with improved style
         timer_text = f"Time: {self.elapsed_time // 1000}.{(self.elapsed_time % 1000) // 100}s"
         timer_surface = self.timer_font.render(timer_text, True, self.colors['timer'])
         timer_rect = timer_surface.get_rect(midtop=(self.stats_rect.centerx, self.stats_rect.top + 80))
         self.screen.blit(timer_surface, timer_rect)
 
-        # Draw moves counter with improved style
+        # Draw moves counter 
         moves_text = f"Moves: {self.moves}"
         moves_surface = self.stats_font.render(moves_text, True, self.colors['moves'])
         moves_rect = moves_surface.get_rect(midtop=(self.stats_rect.centerx, self.stats_rect.top + 120))
         self.screen.blit(moves_surface, moves_rect)
 
-        # Draw buttons with realistic style
+        # Draw buttons
         for button in self.buttons:
-            # Determine button color based on action
             if button['action'] == 'shuffle':
                 base_color = self.colors['shuffle_button']
                 hover_color = self.colors['shuffle_button_hover']
@@ -466,18 +436,14 @@ class PhotoPuzzle:
             elif button['action'] in ['bfs', 'dfs', 'astar']:
                 base_color = self.colors['algorithm_button']
                 hover_color = self.colors['algorithm_button_hover']
-            else:  # exit button
+            else:  
                 base_color = self.colors['exit_button']
                 hover_color = self.colors['exit_button_hover']
 
-            # Create button surface for gradient effect
             button_surface = pygame.Surface((button['rect'].width, button['rect'].height), pygame.SRCALPHA)
-
-            # Draw button shadow
             shadow_rect = pygame.Rect(2, 2, button['rect'].width, button['rect'].height)
             pygame.draw.rect(button_surface, (0, 0, 0, 100), shadow_rect, border_radius=5)
 
-            # Draw button background with gradient
             color = hover_color if button['hover'] else base_color
             # Create gradient effect
             for y in range(button['rect'].height):
@@ -517,10 +483,8 @@ class PhotoPuzzle:
         pygame.display.flip()
 
     def handle_click(self, pos):
-        """Handle mouse click to move pieces or press buttons"""
         if self.solving:
             return
-
         x, y = pos
 
         # Update button hover states
@@ -566,7 +530,6 @@ class PhotoPuzzle:
                 self.moves += 1
 
     def _shuffle_puzzle(self):
-        """Shuffle the puzzle"""
         self.current_state = np.arange(self.grid_size * self.grid_size).reshape(self.grid_size, self.grid_size)
         self.empty_pos = (self.grid_size - 1, self.grid_size - 1)
         for _ in range(1000):
@@ -576,7 +539,6 @@ class PhotoPuzzle:
         self.elapsed_time = 0
 
     def _reset_puzzle(self):
-        """Reset the puzzle to solved state"""
         self.current_state = np.arange(self.grid_size * self.grid_size).reshape(self.grid_size, self.grid_size)
         self.empty_pos = (self.grid_size - 1, self.grid_size - 1)
         self.moves = 0
@@ -584,7 +546,6 @@ class PhotoPuzzle:
         self.elapsed_time = 0
 
     def is_solved(self):
-        """Check if the puzzle is solved"""
         solved_state = np.arange(self.grid_size * self.grid_size).reshape(self.grid_size, self.grid_size)
         return np.array_equal(self.current_state, solved_state)
 
