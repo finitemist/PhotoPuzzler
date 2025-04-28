@@ -2,7 +2,7 @@
 
 A modern implementation of the classic sliding puzzle game with photo support and multiple solving algorithms.
 
-![Game Screenshot](screenshot.png)
+![Game Screenshot](Screenshot.png)
 
 ## Features
 
