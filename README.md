@@ -24,7 +24,7 @@ A modern implementation of the classic sliding puzzle game with photo support an
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/PhotoPuzzle.git
+git clone [[[https://github.com/yourusername/PhotoPuzzle.git](https://github.com/HosamFathy/PhotoPuzzler/tree/main)]]
 cd PhotoPuzzle
 ```
 
@@ -67,22 +67,11 @@ The game implements three different algorithms to solve the puzzle:
    - Uses Manhattan distance heuristic
    - Combines the best features of BFS and DFS
 
-## Project Structure
-
-```
-PhotoPuzzle/
-├── PhotoPuzzler.py      # Main game file
-├── requirements.txt     # Project dependencies
-└── images/             # Directory for puzzle images
-    ├── 1.png
-    ├── 2.jpg
-    └── 3.jpg
-```
 
 ## Customization
 
 ### Adding New Images
-1. Place your images in the `images` directory
+1. Place your images in the directory
 2. Supported formats: PNG, JPG
 3. The game will automatically detect and include them
 
@@ -110,4 +99,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
 
-Project Link: [https://github.com/yourusername/PhotoPuzzle](https://github.com/yourusername/PhotoPuzzle) 
+Project Link: [https://github.com/yourusername/PhotoPuzzle]((https://github.com/HosamFathy/PhotoPuzzler/tree/main)) 
