@@ -24,7 +24,7 @@ A modern implementation of the classic sliding puzzle game with photo support an
 
 1. Clone the repository:
 ```bash
-git clone [https://github.com/HosamFathy/PhotoPuzzler/tree/main?tab=readme-ov-file](https://github.com/HosamFathy/PhotoPuzzler/tree/main)
+git clone https://github.com/HosamFathy/PhotoPuzzler.git
 cd PhotoPuzzler
 ```
 
