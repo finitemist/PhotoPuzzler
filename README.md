@@ -24,8 +24,8 @@ A modern implementation of the classic sliding puzzle game with photo support an
 
 1. Clone the repository:
 ```bash
-git clone [[[https://github.com/yourusername/PhotoPuzzle.git](https://github.com/HosamFathy/PhotoPuzzler/tree/main)]]
-cd PhotoPuzzle
+git clone https://github.com/HosamFathy/PhotoPuzzler/tree/main?tab=readme-ov-file
+cd PhotoPuzzler
 ```
 
 2. Install the required packages:
@@ -71,7 +71,7 @@ The game implements three different algorithms to solve the puzzle:
 ## Customization
 
 ### Adding New Images
-1. Place your images in the directory
+1. Place your images in the 'PuzzleGame' directory
 2. Supported formats: PNG, JPG
 3. The game will automatically detect and include them
 
@@ -99,4 +99,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
 
-Project Link: [https://github.com/yourusername/PhotoPuzzle]((https://github.com/HosamFathy/PhotoPuzzler/tree/main)) 
+Project Link: https://github.com/HosamFathy/PhotoPuzzler/tree/main?tab=readme-ov-file
