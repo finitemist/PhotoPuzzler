@@ -6,12 +6,12 @@ A modern implementation of the classic sliding puzzle game with photo support an
 
 ## Features
 
-- 🖼️ **Photo Support**: Load and play with your favorite images
-- 🎮 **Interactive Gameplay**: Click to move pieces
-- ⚡ **Multiple Solving Algorithms**: Choose between BFS, DFS, and A* algorithms
-- 🎯 **Progress Tracking**: Move counter and timer
-- 🎨 **Modern UI**: Clean interface with gradient effects and smooth animations
-- 🔄 **Multiple Controls**: Shuffle, reset, and change image options
+- **Photo Support**: Load and play with your favorite images
+- **Interactive Gameplay**: Click to move pieces
+- **Multiple Solving Algorithms**: Choose between BFS, DFS, and A* algorithms
+- **Progress Tracking**: Move counter and timer
+- **Modern UI**: Clean interface with gradient effects and smooth animations
+- **Multiple Controls**: Shuffle, reset, and change image options
 
 ## Requirements
 
