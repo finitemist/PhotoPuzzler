@@ -94,9 +94,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Pygame community for the excellent game development framework
 - Pillow (PIL) for image processing capabilities
 - NumPy for efficient array operations
-
-## Contact
-
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
-
-Project Link: [https://github.com/HosamFathy/PhotoPuzzler](https://github.com/HosamFathy/PhotoPuzzler)
