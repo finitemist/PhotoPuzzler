@@ -24,7 +24,7 @@ A modern implementation of the classic sliding puzzle game with photo support an
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/HosamFathy/PhotoPuzzler.git
+git clone https://github.com/finitemist/PhotoPuzzler.git
 cd PhotoPuzzler
 ```
 
@@ -57,7 +57,7 @@ The game implements three different algorithms to solve the puzzle:
    - Explores all possible states level by level
    - Best for small puzzles
 
-2. **Depth-First Search (DFS)**
+2. **Depth-First Search (DLS)**
    - More memory efficient
    - Uses depth limit to prevent infinite recursion
    - May find solutions faster but not necessarily optimal
@@ -94,3 +94,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Pygame community for the excellent game development framework
 - Pillow (PIL) for image processing capabilities
 - NumPy for efficient array operations
+
